@@ -2,8 +2,10 @@
 import csv
 from pathlib import Path
 
-print("-------------------------------------PART 1 - Automate loan portfolio calculations-----------------------------------------------")
-# Part 1 - Automate the Calculations for the Loan Portfolio Summaries
+discount_rate = 0.20  #This is annual discount rate that will be used to calculate present value of different loans
+
+
+# Part 1
 loan_costs = [500, 600, 200, 1000, 450]
 
 # Counting the number of loans in the list and printing it
@@ -19,17 +21,14 @@ average_of_loans = sum_of_loans/number_of_loans
 print(f"The average amount of the loans is ${average_of_loans: .2f}")
 
 
-print("-------------------------------------PART 2 - Analyze Loan Data------------------------------------------------")
 
-# We have a loan called "Loan" (saved in 'loan' dictionary) and
+# Part 2
+# We have a loan called "Loan" (saved in 'loan' dictionary)
 loan = {
     "loan_price": 500,
     "remaining_months": 9,
     "repayment_interval": "bullet",
     "future_value": 1000}
-
-# We have to calculate the Present Value for both these loans. To calculate the Present Value we will use a Discount Rate of 20%
-discount_rate = 0.20
 
 # Extracting the Future Value and Remaining Months of Loan and printing them
 loan_remaining_months = loan.get("remaining_months")
@@ -39,22 +38,21 @@ print(f"The future value of the Loan is ${loan_future_value}")
 
 # Creating a function to calculate the Present Value
 def calculate_present_value(future_value, remaining_months, annual_discount_rate):
-    present_value = future_value/((1 + discount_rate/12)**remaining_months)
+    present_value = future_value/((1 + annual_discount_rate/12)**remaining_months)
     return present_value
 
-# Calculating the Present Value of Loan and printing it
+# Calculating the Present Value of Loan using discount rate of 20% and printing it
 loan_present_value = calculate_present_value(loan_future_value, loan_remaining_months, discount_rate)
 print(f"The present value of the loan is ${loan_present_value: .2f}")
 
-# Comparing the price of each loan with the present value and deciding if the it is worthwhile to buy the loan
+# Comparing the loan price with the present value and deciding if it is worthwhile to buy the loan
 if loan_present_value >= loan.get("loan_price"):
     print("The loan is worth at least the cost to buy it")
 else:
     print("The loan is too expensive and not worth the price.")
 
 
-print("-------------------------------------PART 3 - Perform Financial Calculations-----------------------------------------------")
-
+# Part 3
 # We have another loan called "New Loan" (saved in 'new_loan' dictionary)
 new_loan = {
     "loan_price": 800,
@@ -65,16 +63,14 @@ new_loan = {
 # Extracting the Future Value and Remaining Months of Loan and printing them
 new_loan_remaining_months = new_loan.get("remaining_months")
 new_loan_future_value = new_loan.get("future_value")
-print(f"The number of months remaining for the New Loan is {new_loan_remaining_months} months")
-print(f"The future value of the New Loan is ${new_loan_future_value}")
 
 # Calculating the present value of the New Loan using the function "calculate_present_value" that we used in Part 2. We will use same discount rate of 20%
 new_loan_present_value = calculate_present_value(new_loan_future_value, new_loan_remaining_months, discount_rate)
 print(f"The present value of the New Loan is ${new_loan_present_value: .2f}")
 
 
-print("-------------------------------------PART 4 - Conditionally filter list of loans-----------------------------------------------")
 
+# Part 4
 # We have a series of loans saved as a list of dictionaries called "loans"
 loans = [
     {
@@ -114,8 +110,8 @@ for each_loan in loans:
 # Printing the `inexpensive_loans` list
 print(f"The list of inexpensive loans is: {inexpensive_loans}")
 
-print("-------------------------------------PART 5 - Save results in CSV File-----------------------------------------------")
 
+#Part 5
 # Header for the CSV file
 header = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
 
