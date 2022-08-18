@@ -17,10 +17,14 @@ def calculate_monthly_debt_ratio(monthly_debt_payment, monthly_income):
     Returns:
         The monthly debt ratio
     """
-    monthly_debt_ratio = int(monthly_debt_payment) / int(monthly_income)
-    return monthly_debt_ratio
+    if monthly_debt_payment > 0 and monthly_income > 0:
+        monthly_debt_ratio = int(monthly_debt_payment) / int(monthly_income)
+        return monthly_debt_ratio
+    else:
+        dti_error = 0.00
+        return dti_error
 
-
+    
 def calculate_loan_to_value_ratio(loan_amount, home_value):
     """Calculates users loan to value ratio based on inputs.
 
