@@ -52,6 +52,14 @@ Finally, we use Voila package to convert our script into a web application.
     c) We calculate and plot the cumulative returns.
 
 5) We finally deploy these analyses into a web application using Voila library. The following are screenshots of how the web application looks when deployed locally on my machine - 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 ---
 
